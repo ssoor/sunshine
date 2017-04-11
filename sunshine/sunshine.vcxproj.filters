@@ -13,5 +13,38 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="源文件\fake">
+      <UniqueIdentifier>{fe50b7b9-f688-4841-b7a8-fa748a14d913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\fake">
+      <UniqueIdentifier>{21fc239d-5720-4063-8bc2-69acdccb8734}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sunshine.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fake\kernel32.h">
+      <Filter>头文件\fake</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sunshine.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\kernel32_CreateFileA.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sunshine.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\pubwin_update.zip" />
   </ItemGroup>
 </Project>

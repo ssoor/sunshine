@@ -9,9 +9,10 @@
 *.exe
 *.pdb
 *.tlb
-*.zip
 *.ipch
 *.pch
 *.obj
+*.aps
 *.VC.db
 *.VC.opendb
+*/Debug/*
