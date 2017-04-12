@@ -9,6 +9,8 @@
 *.exe
 *.pdb
 *.tlb
+*.zip
+!sunshine/res/*
 *.ipch
 *.pch
 *.obj

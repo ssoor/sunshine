@@ -16,6 +16,14 @@ inline HINSTANCE GetModuleHandleByAddr(const void * pAddr)
 	return (HMODULE)miMemoryInfo.AllocationBase;
 }
 
+inline void LockModuleForHandle(HINSTANCE hModule)
+{
+	TCHAR szModuleName[MAX_PATH + 1] = { 0 };
+
+	::GetModuleFileName(hModule, szModuleName, MAX_PATH);
+	::GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_PIN, szModuleName, &hModule);
+}
+
 inline bool SetFile(const char * pszFilePath, const void * pFileData, int nFilesize)
 {
 	FILE * pfHandle = NULL;

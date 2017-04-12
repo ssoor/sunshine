@@ -2,11 +2,11 @@
 #include "hookinfo.h"
 
 namespace fake {
-	namespace kernel32 {
-		const hook::Module eModule = hook::Kernel32_dll;
+	namespace wintrust {
+		const hook::Module eModule = hook::Wintrust_dll;
 		namespace func {
 			enum Function {
-				CreateFileA,
+				WinVerifyTrust,
 
 				MaxFunctionNumber
 			};
@@ -30,8 +30,9 @@ namespace fake {
 			return pHookInfo;
 		}
 
-		typedef HANDLE (WINAPI* __pfnCreateFileA)(__in LPCSTR lpFileName, __in DWORD dwDesiredAccess, __in DWORD dwShareMode, __in_opt LPSECURITY_ATTRIBUTES lpSecurityAttributes, __in DWORD dwCreationDisposition, __in DWORD dwFlagsAndAttributes, __in_opt HANDLE hTemplateFile);
+		typedef LONG(WINAPI* __pfnWinVerifyTrust)(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData);
 
-		HANDLE WINAPI CreateFileA(__in LPCSTR lpFileName, __in DWORD dwDesiredAccess, __in DWORD dwShareMode, __in_opt LPSECURITY_ATTRIBUTES lpSecurityAttributes, __in DWORD dwCreationDisposition, __in DWORD dwFlagsAndAttributes, __in_opt HANDLE hTemplateFile);
+		LONG WINAPI WinVerifyTrust(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData);
 	}
+
 }
