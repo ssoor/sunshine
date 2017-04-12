@@ -3,7 +3,7 @@
 
 #include "wintrust.h"
 
-LONG WINAPI fake::wintrust::WinVerifyTrust(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData) {
+LONG WINAPI fake::WinVerifyTrust(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData) {
 	WINTRUST_DATA* pWinTrustData = (WINTRUST_DATA*)pWVTData;
 
 	if (pWinTrustData->cbStruct == sizeof(WINTRUST_DATA) && pWinTrustData->pFile && pWinTrustData->pFile->pcwszFilePath) {
@@ -17,7 +17,7 @@ LONG WINAPI fake::wintrust::WinVerifyTrust(_In_ HWND   hWnd, _In_ GUID   *pgActi
 		}
 	}
 
-	CNktHookLib::HOOK_INFO* pHookInfo = hook::GetInfo(eModule,func::WinVerifyTrust);
+	CNktHookLib::HOOK_INFO* pHookInfo = hook::GetInfo(hook::Wintrust_dll,wintrust::func::WinVerifyTrust);
 
 	return __pfnWinVerifyTrust(pHookInfo->lpCallOriginal)(hWnd, pgActionID, pWVTData);
 }

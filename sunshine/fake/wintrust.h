@@ -29,10 +29,9 @@ namespace fake {
 
 			return pHookInfo;
 		}
-
-		typedef LONG(WINAPI* __pfnWinVerifyTrust)(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData);
-
-		LONG WINAPI WinVerifyTrust(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData);
 	}
 
+	typedef LONG(WINAPI* __pfnWinVerifyTrust)(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData);
+
+	LONG WINAPI WinVerifyTrust(_In_ HWND   hWnd, _In_ GUID   *pgActionID, _In_ LPVOID pWVTData);
 }

@@ -134,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\common\defer.h" />
     <ClInclude Include="fake\hookinfo.h" />
     <ClInclude Include="fake\kernel32.h" />
     <ClInclude Include="fake\wintrust.h" />
@@ -143,6 +144,8 @@
   <ItemGroup>
     <ClCompile Include="fake\hookinfo.cpp" />
     <ClCompile Include="fake\kernel32_CreateFileA.cpp" />
+    <ClCompile Include="fake\kernel32_CreateProcessInternalW.cpp" />
+    <ClCompile Include="fake\kernel32_LoadLibraryW.cpp" />
     <ClCompile Include="fake\wintrust_WinVerifyTrust.cpp" />
     <ClCompile Include="sunshine.cpp" />
   </ItemGroup>

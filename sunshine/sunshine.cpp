@@ -1,10 +1,11 @@
 #include "sunshine.h"
 
+#include <tchar.h>
+#include <Wintrust.h>
+
 #include "resource.h"
 #include "fake\wintrust.h"
 #include "fake\kernel32.h"
-
-#include <Wintrust.h>
 
 #pragma comment(lib,"Wintrust.lib")
 #pragma comment(lib,"e:\\github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib_Debug.lib")
@@ -114,8 +115,10 @@ namespace fake {
 BOOL OnProcessAttach(HINSTANCE hModule) {
 	LockModuleForHandle(GetModuleHandleByAddr(GetModuleHandleByAddr));
 
-	//hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::hook::CreateFileA, CreateFileA, fake::kernel32::CreateFileA), 1);
-	hook::cNktHook.Hook(fake::wintrust::SetHookInfo(fake::wintrust::func::WinVerifyTrust, WinVerifyTrust, fake::wintrust::WinVerifyTrust), 1);
+	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::LoadLibraryW, LoadLibraryW, fake::LoadLibraryW), 1);
+	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::CreateProcessInternalW, GetProcAddress(GetModuleHandle(_T("Kernel32.dll")), "CreateProcessInternalW"), fake::CreateProcessInternalW), 1);
+
+	hook::cNktHook.Hook(fake::wintrust::SetHookInfo(fake::wintrust::func::WinVerifyTrust, WinVerifyTrust, fake::WinVerifyTrust), 1);
 
 	hook::cNktHook.Hook(hook::SetHookInfo(hook::Wiz_SingleEntryUnzip, ::GetProcAddress(LoadLibraryA("unz32dll.dll"), "Wiz_SingleEntryUnzip"), fake::Wiz_SingleEntryUnzip), 1);
 
