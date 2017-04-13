@@ -137,15 +137,20 @@
     <ClInclude Include="..\common\defer.h" />
     <ClInclude Include="fake\hookinfo.h" />
     <ClInclude Include="fake\kernel32.h" />
+    <ClInclude Include="fake\ntdll.h" />
     <ClInclude Include="fake\wintrust.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="sunshine.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\pcre\pcre.c" />
     <ClCompile Include="fake\hookinfo.cpp" />
     <ClCompile Include="fake\kernel32_CreateFileA.cpp" />
     <ClCompile Include="fake\kernel32_CreateProcessInternalW.cpp" />
+    <ClCompile Include="fake\kernel32_LoadLibraryExW.cpp" />
     <ClCompile Include="fake\kernel32_LoadLibraryW.cpp" />
+    <ClCompile Include="fake\ntdll_LdrLoadDll.cpp" />
+    <ClCompile Include="fake\ntdll_NtCreateSection.cpp" />
     <ClCompile Include="fake\wintrust_WinVerifyTrust.cpp" />
     <ClCompile Include="sunshine.cpp" />
   </ItemGroup>

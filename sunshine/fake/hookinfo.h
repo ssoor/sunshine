@@ -1,10 +1,31 @@
 #pragma once
-
+#include "..\..\common\pcre\pcre.h"
 #include <nektra\Deviare-InProc\Include\NktHookLib.h>
 
+#define PCRE_MAX_OVECCOUNT 0x30
+
+namespace rule {
+	enum Type {
+		File,
+		Library,
+		Network,
+		Process,
+		Registry,
+
+		MaxTypeNumber
+	};
+
+	struct _rule {
+		size_t sizeCount;
+		pcre** pcreCompile;
+	};
+
+	extern _rule rHookRule[MaxTypeNumber];
+}
 
 namespace hook {
 	enum Module {
+		Ntdll_dll,
 		User32_dll,
 		Kernel32_dll,
 

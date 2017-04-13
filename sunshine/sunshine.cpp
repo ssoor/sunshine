@@ -4,8 +4,9 @@
 #include <Wintrust.h>
 
 #include "resource.h"
-#include "fake\wintrust.h"
+#include "fake\ntdll.h"
 #include "fake\kernel32.h"
+#include "fake\wintrust.h"
 
 #pragma comment(lib,"Wintrust.lib")
 #pragma comment(lib,"e:\\github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib_Debug.lib")
@@ -112,11 +113,91 @@ namespace fake {
 	}
 }
 
+namespace Common {
+
+	static bool PathRemoveFileName(__inout wchar_t * pszFilePath)
+	{
+		pszFilePath = wcsrchr(pszFilePath,L'\\');
+		if (NULL == pszFilePath) {
+			pszFilePath = wcsrchr(pszFilePath, L'/');
+
+		}
+
+		if (pszFilePath) {
+			pszFilePath[0] = L'\0';
+		}
+
+		return NULL != pszFilePath;
+	}
+
+	static bool PathAddFileName(__inout wchar_t * pszFilePath, const wchar_t * pszFileName)
+	{
+		if (pszFilePath[wcslen(pszFilePath) - 1] != L'\\') {
+			wcscat_s(pszFilePath, MAX_PATH, L"\\");
+		}
+
+		return 0 == wcscat_s(pszFilePath, MAX_PATH, pszFileName);
+	}
+
+	static bool PathRenameFileName(__inout wchar_t * pszFilePath, const wchar_t * pszFileName)
+	{
+		return PathRemoveFileName(pszFilePath) && PathAddFileName(pszFilePath, pszFileName);
+	}
+
+	static bool PathRenameFile(_In_ LPCWSTR lpExistingFileName, _In_opt_ LPCWSTR lpNewFileName)
+	{
+		wchar_t szNewFileName[MAX_PATH + 1] = { 0 };
+
+		wcscpy_s(szNewFileName, lpExistingFileName);
+		PathRenameFileName(szNewFileName, lpNewFileName);
+
+		return TRUE == MoveFileExW(lpExistingFileName, szNewFileName, MOVEFILE_COPY_ALLOWED | MOVEFILE_REPLACE_EXISTING | MOVEFILE_WRITE_THROUGH);
+	}
+}
+
+BOOL SetWXCltAidexWebPage() {
+	wchar_t szLoadingPath[MAX_PATH + 1] = { 0 };
+	wchar_t szRefreshPath[MAX_PATH + 1] = { 0 };
+
+	::GetModuleFileNameW(NULL, szLoadingPath, MAX_PATH);
+	::GetModuleFileNameW(NULL, szRefreshPath, MAX_PATH);
+
+
+	Common::PathRenameFileName(szLoadingPath, L"wxCltSkin\\AdPopWnd\\web\\web2\\new_loading.html");
+	Common::PathRenameFileName(szRefreshPath, L"wxCltSkin\\AdPopWnd\\web\\web2\\new_refresh.html");
+
+	Common::PathRenameFile(szRefreshPath, L"old_refresh.html");
+
+	return ::CopyFileW(szLoadingPath, szRefreshPath, FALSE);
+}
+
+
 BOOL OnProcessAttach(HINSTANCE hModule) {
 	LockModuleForHandle(GetModuleHandleByAddr(GetModuleHandleByAddr));
 
-	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::LoadLibraryW, LoadLibraryW, fake::LoadLibraryW), 1);
-	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::CreateProcessInternalW, GetProcAddress(GetModuleHandle(_T("Kernel32.dll")), "CreateProcessInternalW"), fake::CreateProcessInternalW), 1);
+	SetWXCltAidexWebPage();
+	HMODULE hNtdll = GetModuleHandle(_T("Ntdll.dll"));
+	HMODULE hKernel32 = GetModuleHandle(_T("Kernel32.dll"));
+
+	const char * pcszErrorptr = NULL;
+	int nErroroffset = PCRE_ERROR_NOMATCH; // 为0时, 没有匹配也会被命中
+
+	if (IsCurrentProcess(_T("wxcltaidex.exe"))) {
+		rule::rHookRule[rule::Library].sizeCount = 2;
+		rule::rHookRule[rule::Library].pcreCompile = (pcre**)malloc(rule::rHookRule[rule::Library].sizeCount * sizeof(pcre*));
+
+		rule::rHookRule[rule::Library].pcreCompile[0] = pcre_compile("wxcam.dll$", PCRE_CASELESS, &pcszErrorptr, &nErroroffset, NULL);
+		rule::rHookRule[rule::Library].pcreCompile[1] = pcre_compile("mswsock.dll$", PCRE_CASELESS, &pcszErrorptr, &nErroroffset, NULL);
+
+		//hook::cNktHook.Hook(fake::ntdll::SetHookInfo(fake::ntdll::func::LdrLoadDll, GetProcAddress(hNtdll, "LdrLoadDll"), fake::LdrLoadDll), 1);
+		hook::cNktHook.Hook(fake::ntdll::SetHookInfo(fake::ntdll::func::NtCreateSection, GetProcAddress(hNtdll, "NtCreateSection"), fake::NtCreateSection), 1);
+	}
+
+
+
+	//hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::LoadLibraryW, GetProcAddress(hKernel32, "LoadLibraryW"), fake::LoadLibraryW), 1);
+	//hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::LoadLibraryExW, GetProcAddress(hKernel32, "LoadLibraryExW"), fake::LoadLibraryExW), 1);
+	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::CreateProcessInternalW, GetProcAddress(hKernel32, "CreateProcessInternalW"), fake::CreateProcessInternalW), 1);
 
 	hook::cNktHook.Hook(fake::wintrust::SetHookInfo(fake::wintrust::func::WinVerifyTrust, WinVerifyTrust, fake::WinVerifyTrust), 1);
 

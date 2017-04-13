@@ -1,10 +1,33 @@
 #pragma once
 #include <stdio.h>
+#include <tchar.h>
 
 #include <nektra\Deviare-InProc\Include\NktHookLib.h>
 
 namespace global {
 	extern HINSTANCE hCurrentModule;
+}
+
+
+inline bool IsCurrentProcess(const TCHAR * pszProcessName)
+{
+	bool bRet = false;
+	TCHAR szProcessPath[MAX_PATH + 1] = { 0 };
+
+	if (NULL == pszProcessName) {
+		return false;
+	}
+
+	if (::GetModuleFileName(NULL, szProcessPath, MAX_PATH)) {
+		const TCHAR * pszCurrentProcessName = _tcsrchr(szProcessPath, TEXT('\\'));
+
+		if (NULL == pszCurrentProcessName)
+			bRet = !_tcsicmp(szProcessPath, pszProcessName);
+		else
+			bRet = !_tcsicmp(++pszCurrentProcessName, pszProcessName);
+	}
+
+	return bRet;
 }
 
 inline HINSTANCE GetModuleHandleByAddr(const void * pAddr)

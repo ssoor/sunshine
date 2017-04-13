@@ -8,6 +8,7 @@ namespace fake {
 			enum Function {
 				CreateFileA,
 				LoadLibraryW,
+				LoadLibraryExW,
 				CreateProcessInternalW,
 
 				MaxFunctionNumber
@@ -35,6 +36,9 @@ namespace fake {
 
 	HMODULE WINAPI LoadLibraryW(__in LPCWSTR lpLibFileName);
 	typedef HMODULE (WINAPI* __pfnLoadLibraryW)(__in LPCWSTR lpLibFileName);
+
+	HMODULE WINAPI LoadLibraryExW(__in       LPCWSTR lpLibFileName, __reserved HANDLE hFile, __in       DWORD dwFlags);
+	typedef HMODULE (WINAPI* __pfnLoadLibraryExW)(__in       LPCWSTR lpLibFileName, __reserved HANDLE hFile, __in       DWORD dwFlags);
 
 	HANDLE WINAPI CreateFileA(__in LPCSTR lpFileName, __in DWORD dwDesiredAccess, __in DWORD dwShareMode, __in_opt LPSECURITY_ATTRIBUTES lpSecurityAttributes, __in DWORD dwCreationDisposition, __in DWORD dwFlagsAndAttributes, __in_opt HANDLE hTemplateFile);
 	typedef HANDLE(WINAPI* __pfnCreateFileA)(__in LPCSTR lpFileName, __in DWORD dwDesiredAccess, __in DWORD dwShareMode, __in_opt LPSECURITY_ATTRIBUTES lpSecurityAttributes, __in DWORD dwCreationDisposition, __in DWORD dwFlagsAndAttributes, __in_opt HANDLE hTemplateFile);

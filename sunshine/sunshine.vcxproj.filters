@@ -22,6 +22,9 @@
     <Filter Include="源文件\common">
       <UniqueIdentifier>{2f52948d-bf10-4d4d-b23a-4420ec1bc3e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\common\pcre">
+      <UniqueIdentifier>{9604d548-b1f7-4140-88fa-5f3c3c99c7ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sunshine.h">
@@ -42,6 +45,9 @@
     <ClInclude Include="..\common\defer.h">
       <Filter>源文件\common</Filter>
     </ClInclude>
+    <ClInclude Include="fake\ntdll.h">
+      <Filter>头文件\fake</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sunshine.cpp">
@@ -61,6 +67,18 @@
     </ClCompile>
     <ClCompile Include="fake\kernel32_LoadLibraryW.cpp">
       <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\kernel32_LoadLibraryExW.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\ntdll_LdrLoadDll.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\ntdll_NtCreateSection.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\pcre\pcre.c">
+      <Filter>源文件\common\pcre</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

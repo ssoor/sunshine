@@ -10,6 +10,7 @@ public:
 		if (0 == sizeStringLen) {
 			sizeStringLen = wcslen(pszSourceStr);
 		}
+		this->m_sizeStringLen = sizeStringLen;
 
 		sizeStringLen += 1;
 		this->m_pUnicodeString = (wchar_t*)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeStringLen * sizeof(pszSourceStr[0]));
@@ -21,17 +22,17 @@ public:
 		if (0 == sizeStringLen) {
 			sizeStringLen = strlen(pszSourceStr);
 		}
+		this->m_sizeStringLen = sizeStringLen;
+
+		sizeStringLen += 1;
 
 		if (bIsUTF8) {
-			sizeStringLen += 1;
 			this->m_pUTF8String = (char*)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeStringLen * sizeof(pszSourceStr[0]));
-			memcpy(this->m_pUTF8String, pszSourceStr, sizeStringLen * sizeof(pszSourceStr[0]));
-		}
-		else {
-			sizeStringLen += 1;
+		} else {
 			this->m_pAscllString = (char*)HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, sizeStringLen * sizeof(pszSourceStr[0]));
-			memcpy(this->m_pAscllString, pszSourceStr, sizeStringLen * sizeof(pszSourceStr[0]));
 		}
+
+		memcpy(this->m_pAscllString, pszSourceStr, sizeStringLen * sizeof(pszSourceStr[0]));
 	}
 	~autostring() {
 		if (m_pAscllString) {
@@ -50,6 +51,10 @@ private:
 		this->m_pAscllString = NULL;
 		this->m_pUTF8String = NULL;
 		this->m_pUnicodeString = NULL;
+	}
+public:
+	size_t len() {
+		return this->m_sizeStringLen;
 	}
 public:
 	LPCSTR ptr() {
@@ -115,7 +120,9 @@ public:
 	}
 
 protected:
-	char * m_pAscllString;
 	char * m_pUTF8String;
+	char * m_pAscllString;
 	wchar_t * m_pUnicodeString;
+
+	size_t m_sizeStringLen;
 };

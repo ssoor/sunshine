@@ -18,3 +18,8 @@
 *.VC.db
 *.VC.opendb
 */Debug/*
+*/Release/*
+*.ilk
+*.iobj
+*.ipdb
+*.tlog
