@@ -17,6 +17,7 @@
 *.aps
 *.VC.db
 *.VC.opendb
+*.vs/*
 */Debug/*
 */Release/*
 *.ilk

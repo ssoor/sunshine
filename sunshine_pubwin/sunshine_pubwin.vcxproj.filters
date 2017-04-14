@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\fake">
+      <UniqueIdentifier>{7e17ac82-e1d2-4454-847e-e49b3db1cf41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\fake">
+      <UniqueIdentifier>{dfbda87e-2d4a-4cfa-8452-9631883434cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{42460592-6d1c-42e0-a9e8-18f6d60cf595}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\common\pcre">
+      <UniqueIdentifier>{370f53f4-6b1f-471d-b905-d7625ea1975b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sunshine_pubwin_main.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="fake\hookinfo.h">
+      <Filter>头文件\fake</Filter>
+    </ClInclude>
+    <ClInclude Include="fake\kernel32.h">
+      <Filter>头文件\fake</Filter>
+    </ClInclude>
+    <ClInclude Include="fake\ntdll.h">
+      <Filter>头文件\fake</Filter>
+    </ClInclude>
+    <ClInclude Include="fake\wintrust.h">
+      <Filter>头文件\fake</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sunshine_pubwin.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sunshine_pubwin_main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\hookinfo.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\kernel32_CreateFileA.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\kernel32_CreateProcessInternalW.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\kernel32_LoadLibraryExW.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\kernel32_LoadLibraryW.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\ntdll_LdrLoadDll.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\ntdll_NtCreateSection.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="fake\wintrust_WinVerifyTrust.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
+    <ClCompile Include="..\common\pcre\pcre.c">
+      <Filter>源文件\common\pcre</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\pubwin_update.zip" />
+  </ItemGroup>
+</Project>
