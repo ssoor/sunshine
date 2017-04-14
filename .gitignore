@@ -10,6 +10,7 @@
 *.pdb
 *.tlb
 *.zip
+*.scc
 !sunshine/res/*
 *.ipch
 *.pch

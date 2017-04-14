@@ -36,6 +36,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Release\sunshine_pubwin.dll" />
+    <None Include="..\build\sunshine_pubwin.dll" />
   </ItemGroup>
 </Project>

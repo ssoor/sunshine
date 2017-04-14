@@ -82,6 +82,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -95,6 +98,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -111,6 +117,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -127,6 +136,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engine_main.cpp" />
@@ -140,7 +152,7 @@
     <ResourceCompile Include="engine.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Release\sunshine_pubwin.dll" />
+    <None Include="..\build\sunshine_pubwin.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
