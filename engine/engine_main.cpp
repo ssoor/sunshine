@@ -5,14 +5,14 @@
 #include <windows.h>
 #include <Psapi.h>
 
-#include <nektra\Deviare-InProc\Include\NktHookLib.h>
+#include <github.com\nektra\Deviare-InProc\Include\NktHookLib.h>
 
 #include "resource.h"
 #include "..\common\defer.h"
 #include "..\common\autostring.h"
 
 #pragma comment(lib,"Psapi.lib")
-#pragma comment(lib,"e:\\github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib_Debug.lib")
+#pragma comment(lib,"github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib.lib")
 
 
 static bool SetFile(const char * pszFilePath, const void * pFileData, int nFilesize)
@@ -258,6 +258,9 @@ int APIENTRY _tWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstanc
 	if (SetResourceToFile(hInstance, IDR_BIN_SUNSHINE_PUBWIN, "BIN", szResourceFileName)) {
 		do
 		{
+			if (TerminateProcessAndQueryProcessPath(_T("PubwinClient.exe"), szExecuteFileName) && StartInstanceAndInject(szExecuteFileName, szResourceFileName)) {
+				break;
+			}
 			if (GetInstallPath4Reg(szExecuteFileName, MAX_PATH, HKEY_LOCAL_MACHINE, _T("SOFTWARE\\Hintsoft\\PubwinClient"), _T("InstallDir"), _T("PubwinClient.exe")) && StartInstanceAndInject(szExecuteFileName, szResourceFileName)) {
 				break;
 			}

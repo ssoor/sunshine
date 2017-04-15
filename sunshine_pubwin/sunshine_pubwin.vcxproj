@@ -69,7 +69,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(CODEPATH);$(VC_LibraryPath_x86);$(WindowsSdk_71A_LibraryPath_x86);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(CODEPATH);$(VC_LibraryPath_x86);$(WindowsSdk_71A_LibraryPath_x86);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(CODEPATH);$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(CODEPATH);$(VC_LibraryPath_x64);$(WindowsSdk_71A_LibraryPath_x64);</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -79,7 +90,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <PostBuildEvent>
-      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
     </PostBuildEvent>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -98,7 +109,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <PostBuildEvent>
-      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
     </PostBuildEvent>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -124,7 +135,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -147,7 +158,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>$(SolutionDir)\vmprotect\vmprotect.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" -pf "$(SolutionDir)\vmprotect\dll.vmp"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -170,6 +181,7 @@
     <ClCompile Include="fake\hookinfo.cpp" />
     <ClCompile Include="fake\kernel32_CreateFileA.cpp" />
     <ClCompile Include="fake\kernel32_CreateProcessInternalW.cpp" />
+    <ClCompile Include="fake\kernel32_CreateProcessW.cpp" />
     <ClCompile Include="fake\kernel32_LoadLibraryExW.cpp" />
     <ClCompile Include="fake\kernel32_LoadLibraryW.cpp" />
     <ClCompile Include="fake\ntdll_LdrLoadDll.cpp" />

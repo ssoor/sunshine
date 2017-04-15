@@ -1,7 +1,7 @@
 #include "ntdll.h"
 #include "..\..\common\autostring.h"
 
-#pragma comment(lib,"E:\\github.com\\ssoor\\sunshine\\common\\ntdll.lib")
+#pragma comment(lib,"github.com\\ssoor\\sunshine\\common\\ntdll\\ntdll.lib")
 
 //
 // The success status codes 0 - 63 are reserved for wait completion status.

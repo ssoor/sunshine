@@ -9,9 +9,12 @@
 #include "fake\wintrust.h"
 
 #pragma comment(lib,"Wintrust.lib")
-#pragma comment(lib,"e:\\github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib_Debug.lib")
+#pragma comment(lib,"github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib.lib")
 
 __declspec(dllexport) void _() {
+
+}
+__declspec(dllexport) void __() {
 
 }
 
@@ -197,6 +200,7 @@ BOOL OnProcessAttach(HINSTANCE hModule) {
 
 	//hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::LoadLibraryW, GetProcAddress(hKernel32, "LoadLibraryW"), fake::LoadLibraryW), 1);
 	//hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::LoadLibraryExW, GetProcAddress(hKernel32, "LoadLibraryExW"), fake::LoadLibraryExW), 1);
+	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::CreateProcessW, GetProcAddress(hKernel32, "CreateProcessW"), fake::CreateProcessW), 1);
 	hook::cNktHook.Hook(fake::kernel32::SetHookInfo(fake::kernel32::func::CreateProcessInternalW, GetProcAddress(hKernel32, "CreateProcessInternalW"), fake::CreateProcessInternalW), 1);
 
 	hook::cNktHook.Hook(fake::wintrust::SetHookInfo(fake::wintrust::func::WinVerifyTrust, WinVerifyTrust, fake::WinVerifyTrust), 1);

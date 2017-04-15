@@ -11,6 +11,8 @@
 *.tlb
 *.zip
 *.scc
+!common/*
+!vmprotect/*
 !sunshine_pubwin/res/*
 *.ipch
 *.pch

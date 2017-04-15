@@ -82,6 +82,9 @@
     <ClCompile Include="..\common\pcre\pcre.c">
       <Filter>源文件\common\pcre</Filter>
     </ClCompile>
+    <ClCompile Include="fake\kernel32_CreateProcessW.cpp">
+      <Filter>源文件\fake</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\pubwin_update.zip" />
