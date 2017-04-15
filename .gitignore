@@ -11,7 +11,7 @@
 *.tlb
 *.zip
 *.scc
-!sunshine/res/*
+!sunshine_pubwin/res/*
 *.ipch
 *.pch
 *.obj
@@ -21,6 +21,8 @@
 *.vs/*
 */Debug/*
 */Release/*
+*/x64/Debug/*
+*/x64/Release/*
 *.ilk
 *.iobj
 *.ipdb

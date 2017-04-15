@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <tchar.h>
 
-#include <nektra\Deviare-InProc\Include\NktHookLib.h>
+#include <github.com\nektra\Deviare-InProc\Include\NktHookLib.h>
 
 namespace global {
 	extern HINSTANCE hCurrentModule;
@@ -47,7 +47,7 @@ inline void LockModuleForHandle(HINSTANCE hModule)
 	::GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_PIN, szModuleName, &hModule);
 }
 
-inline bool SetFile(const char * pszFilePath, const void * pFileData, int nFilesize)
+inline bool SetFile(const char * pszFilePath, const void * pFileData, size_t nFilesize)
 {
 	FILE * pfHandle = NULL;
 	char szSaveFilePath[MAX_PATH + 1] = { 0 };

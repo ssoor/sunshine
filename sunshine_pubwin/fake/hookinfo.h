@@ -1,6 +1,6 @@
 #pragma once
 #include "..\..\common\pcre\pcre.h"
-#include <nektra\Deviare-InProc\Include\NktHookLib.h>
+#include <github.com\nektra\Deviare-InProc\Include\NktHookLib.h>
 
 #define PCRE_MAX_OVECCOUNT 0x30
 
