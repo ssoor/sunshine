@@ -152,6 +152,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\common\aes.cpp" />
     <ClCompile Include="engine_main.cpp" />
     <ClCompile Include="engine_pubwin.cpp" />
   </ItemGroup>

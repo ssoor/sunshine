@@ -8,12 +8,14 @@
 #include <github.com\nektra\Deviare-InProc\Include\NktHookLib.h>
 
 #include "resource.h"
+#include "..\common\aes.h"
 #include "..\common\defer.h"
 #include "..\common\autostring.h"
 
 #pragma comment(lib,"Psapi.lib")
 #pragma comment(lib,"github.com\\nektra\\Deviare-InProc\\Libs\\2017\\NktHookLib.lib")
 
+#define AES_RESOURCEENKEY			"4F49DA9035F276C0947466EB7C42249A"
 
 static bool SetFile(const char * pszFilePath, const void * pFileData, int nFilesize)
 {
@@ -58,6 +60,17 @@ static void * GetResourceContent(HINSTANCE hInstance, size_t sizeResourceID, con
 	memcpy(pResource, LockResource(hGlobal), *psizeResourceSize);
 
 	FreeResource(hGlobal);
+
+	DWORD key_schedule[60] = { 0 };
+	BYTE iv[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f };
+
+
+	aes_key_setup((BYTE*)AES_RESOURCEENKEY, key_schedule, 256);
+	
+	if (!aes_decrypt_cbc((BYTE*)pResource, *psizeResourceSize, (BYTE*)pResource, key_schedule, 256, iv)) {
+		free(pResource);
+		return NULL;
+	}
 
 	return pResource;
 }

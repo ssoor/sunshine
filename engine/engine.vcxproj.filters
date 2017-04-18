@@ -21,6 +21,9 @@
     <ClCompile Include="engine_pubwin.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="..\common\aes.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine_main.h">

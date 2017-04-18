@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Document Version="2">
-    <Protection InputFileName="raw.dll" Options="499656" VMCodeSectionName=".upx">
+    <Protection InputFileName="raw.dll" Options="300488" VMCodeSectionName=".upx">
         <Messages>
             <Message Id="0">运行环境非法, 请立即停止对程序的破解行为!!!</Message>
             <Message Id="1">运行环境非法, 程序运行终止.</Message>
@@ -8,7 +8,9 @@
             <Message Id="3">无效的授权信息.</Message>
         </Messages>
         <Folders />
-        <Procedures />
+        <Procedures>
+            <Procedure MapAddress="EntryPoint" Options="0" CompilationType="2" />
+        </Procedures>
         <Objects />
     </Protection>
     <DLLBox>

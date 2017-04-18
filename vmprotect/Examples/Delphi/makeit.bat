@@ -1,1 +1,0 @@
-dcc32 -B Project1.dpr -GD

@@ -11,7 +11,7 @@
 *.tlb
 *.zip
 *.scc
-!common/*
+!common/*/*
 !vmprotect/*
 !sunshine_pubwin/res/*
 *.ipch
@@ -21,6 +21,9 @@
 *.VC.db
 *.VC.opendb
 *.vs/*
+build/*
+Debug/*
+Release/*
 */Debug/*
 */Release/*
 */x64/Debug/*

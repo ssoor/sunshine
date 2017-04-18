@@ -90,7 +90,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
+      <Command>$(SolutionDir)\vmprotect\aes.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" "4F49DA9035F276C0947466EB7C42249A"</Command>
     </PostBuildEvent>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -109,7 +109,7 @@
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
+      <Command>$(SolutionDir)\vmprotect\aes.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" "4F49DA9035F276C0947466EB7C42249A"</Command>
     </PostBuildEvent>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,7 +135,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
+      <Command>$(SolutionDir)\vmprotect\aes.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" "4F49DA9035F276C0947466EB7C42249A"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -158,7 +158,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)"</Command>
+      <Command>$(SolutionDir)\vmprotect\aes.exe "$(TargetPath)" "$(SolutionDir)\build\$(TargetFileName)" "4F49DA9035F276C0947466EB7C42249A"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>

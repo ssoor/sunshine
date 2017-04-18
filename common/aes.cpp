@@ -592,9 +592,9 @@ void aes_key_setup(const BYTE key[], DWORD w[], int keysize)
 void AddRoundKey(BYTE state[][4], const DWORD w[])
 {
 	BYTE subkey[4];
-
 	// memcpy(subkey,&w[idx],4); // Not accurate for big endian machines
 	// Subkey 1
+#pragma warning(disable:4244)
 	subkey[0] = w[0] >> 24;
 	subkey[1] = w[0] >> 16;
 	subkey[2] = w[0] >> 8;
@@ -630,6 +630,7 @@ void AddRoundKey(BYTE state[][4], const DWORD w[])
 	state[1][3] ^= subkey[1];
 	state[2][3] ^= subkey[2];
 	state[3][3] ^= subkey[3];
+#pragma warning(default:4244)
 }
 
 /////////////////
